@@ -2,24 +2,18 @@
 
 <form method="post" action="/">
   <div class="row">
-    <div class="span1"><p>Codes:</p></div>
-    <div class="span11"><textarea name="code"><%= @code %></textarea></div>
-  </div>
-
-  <div class="row">
-    <select name="language" class="pull-right">
-      <% LANGUAGES.each do |l| %>
-        <option <% if l.to_s.eql? @language %>selected="selected"<% end %>><%= l %></option>
-      <% end %>
-    </select>
-  </div>
-
-  <div class="row">
     <div class="pull-right">
-      <label class="checkbox">
-        <input type="checkbox" name="inline" <% if @inline %>checked="checked"<% end %>> Inline Style?
-      </label>
+      <select name="language">
+        <% LANGUAGES.each do |l| %>
+          <option <% if((l == @language) || (@language.nil? && l == "ruby")) %>selected="selected"<% end %>><%= l %></option>
+        <% end %>
+      </select>
     </div>
+  </div>
+
+  <div class="row">
+    <div class="span1"><p>codes:</p></div>
+    <div class="span11"><textarea name="code"><%= @code %></textarea></div>
   </div>
 
   <div class="row">
@@ -28,19 +22,24 @@
 </form>
 
 <div class="row" <% if @html.nil? %>style="display: none;"<% end %>>
-  <div class="span1"><p>Preview:</p></div>
+  <div class="span1"><p>preview:</p></div>
   <div id="preview" class="span11">
     <style><%= @css %></style>
     <%= @html %>
   </div>
 </div>
 
+<div class="row" <% if @inlined.nil? %>style="display: none;"<% end %>>
+  <div class="span1"><p>inline styles:</p></div>
+  <div class="span11"><textarea id="inlined" readonly="readonly"><%= @inlined %></textarea></div>
+</div>
+
 <div class="row" <% if @css.nil? %>style="display: none;"<% end %>>
-  <div class="span1"><p>CSS:</p></div>
+  <div class="span1"><p>css:</p></div>
   <div class="span11"><textarea id="css" readonly="readonly"><%= @css %></textarea></div>
 </div>
 
 <div class="row" <% if @html.nil? %>style="display: none;"<% end %>>
-  <div class="span1"><p>HTML:</p></div>
+  <div class="span1"><p>html:</p></div>
   <div class="span11"><textarea id="html" readonly="readonly"><%= @html %></textarea></div>
 </div>

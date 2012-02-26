@@ -1,4 +1,6 @@
 $(function() {
+  $("select").chosen();
+
   $("form").on("submit", function(event) {
     event.preventDefault();
 
@@ -9,14 +11,9 @@ $(function() {
 
       success: function(resp) {
         $("#preview").html("").append("<style>" + resp.css + "</style>").append(resp.html).parents(".row").show()
+        $("#inlined").val(resp.inlined).parents(".row").show();
         $("#html").val(resp.html).parents(".row").show();
-
-        if(resp.css) {
-          $("#css").val(resp.css).parents(".row").show();
-        }
-        else {
-          $("#css").parents(".row").hide()
-        }
+        $("#css").val(resp.css).parents(".row").show();
       },
 
       error: function() {
