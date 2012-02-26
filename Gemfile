@@ -1,8 +1,9 @@
 source :rubygems
 
-gem 'sinatra'
-gem 'sinatra-contrib'
-gem 'shotgun'
+gem 'heroku'
 gem 'json'
 gem 'pygments.rb'
+gem 'shotgun'
+gem 'sinatra'
+gem 'sinatra-contrib'
 

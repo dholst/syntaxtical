@@ -6,6 +6,7 @@ module Syntaxtical
     ]
 
     configure do
+      RubyPython.configure :python_exe => 'python2.6'
       set :public_folder, "#{File.dirname(__FILE__)}/../../public"
     end
 

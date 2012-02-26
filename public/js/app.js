@@ -19,7 +19,7 @@ $(function() {
         }
       },
 
-      failure: function() {
+      error: function() {
         alert("dunno dude, maybe try again?");
       }
     });
