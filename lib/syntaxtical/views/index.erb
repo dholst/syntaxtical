@@ -1,0 +1,46 @@
+<a href="http://github.com/darrinholst/syntaxtical"><img style="position: absolute; top: 0; left: 0; border: 0;" src="https://a248.e.akamai.net/assets.github.com/img/edc6dae7a1079163caf7f17c60495bbb6d027c93/687474703a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f6c6566745f677265656e5f3030373230302e706e67" alt="Fork me on GitHub"></a>
+
+<form method="post" action="/">
+  <div class="row">
+    <div class="span1"><p>Codes:</p></div>
+    <div class="span11"><textarea name="code"><%= @code %></textarea></div>
+  </div>
+
+  <div class="row">
+    <select name="language" class="pull-right">
+      <% LANGUAGES.each do |l| %>
+        <option <% if l.to_s.eql? @language %>selected="selected"<% end %>><%= l %></option>
+      <% end %>
+    </select>
+  </div>
+
+  <div class="row">
+    <div class="pull-right">
+      <label class="checkbox">
+        <input type="checkbox" name="inline" <% if @inline %>checked="checked"<% end %>> Inline Style?
+      </label>
+    </div>
+  </div>
+
+  <div class="row">
+    <input type="submit" class="pull-right btn btn-success" value="Highlight It">
+  </div>
+</form>
+
+<div class="row" <% if @html.nil? %>style="display: none;"<% end %>>
+  <div class="span1"><p>Preview:</p></div>
+  <div id="preview" class="span11">
+    <style><%= @css %></style>
+    <%= @html %>
+  </div>
+</div>
+
+<div class="row" <% if @css.nil? %>style="display: none;"<% end %>>
+  <div class="span1"><p>CSS:</p></div>
+  <div class="span11"><textarea id="css" readonly="readonly"><%= @css %></textarea></div>
+</div>
+
+<div class="row" <% if @html.nil? %>style="display: none;"<% end %>>
+  <div class="span1"><p>HTML:</p></div>
+  <div class="span11"><textarea id="html" readonly="readonly"><%= @html %></textarea></div>
+</div>
